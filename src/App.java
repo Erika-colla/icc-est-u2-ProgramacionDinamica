@@ -15,6 +15,9 @@ public class App {
     // 2. Bottom-Up (Iterativo / Tabulación)
     long resBU = medirTIempo(() -> fib.fibonacciBu(n));
     System.out.println("Bottom-Up Resultado: " + resBU);
+
+    int resBO = medirTIempo(() -> fib.fibOptimizado(n));
+    System.out.println("Bottom-Up Resultado: " + resBO);
     }
 
     
@@ -39,18 +42,20 @@ public class App {
         System.out.println("Tiempo (milisegundos): " + (endTime - startTime) / 1_000_000_000.0);
         return resultado;
     }
-    public long fibonacciBuOptimized(int n) {
-    if (n <= 1) return n;
-    
-    long prev2 = 0; // f(n-2)
-    long prev1 = 1; // f(n-1)
-    long current = 0;
-    
-    for (int i = 2; i <= n; i++) {
-        current = prev1 + prev2;
-        prev2 = prev1;
-        prev1 = current;
+
+    public int fibOptimizado(int n) {
+        if (n <= 1)
+            return n;
+
+        int prev2 = 0, prev1 = 1;
+        
+        for (int i = 2; i <= n; i++) {
+            int actual = prev1 + prev2;
+            prev1 = actual;
+        }
+
+        return prev1;
     }
-    return current;
-}
+
+
 }

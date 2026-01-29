@@ -31,4 +31,18 @@ public class Fibonacci {
         }
         return dp[n];
     }
+
+    public int fibOptimizado(int n) {
+        if (n <= 1)
+            return n;
+
+        int prev2 = 0, prev1 = 1;
+        
+        for (int i = 2; i <= n; i++) {
+            int actual = prev1 + prev2;
+            prev1 = actual;
+        }
+
+        return prev1;
+    }
 }
